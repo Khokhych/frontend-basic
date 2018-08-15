@@ -1,0 +1,23 @@
+{
+  "name": "khokych",
+  "description": "test",
+  "author": "khokych",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.24.4",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.4.0",
+    "gulp-cssmin": "^0.2.0",
+    "gulp-group-css-media-queries": "^1.2.2",
+    "gulp-minify": "^3.1.0",
+    "gulp-notify": "^3.0.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rigger": "^0.5.8",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "^3.0.1"
+  },
+  "dependencies": {
+    "gulp-flatten": "^0.4.0",
+    "gulp-rcs": "^1.1.0"
+  }
+}
