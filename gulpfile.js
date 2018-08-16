@@ -15,67 +15,42 @@ const gulp = require('gulp'),
     folders = require('gulp-folders'),
     pathToFolder = 'src/components';
 
-gulp.task('task', folders(pathToFolder, function(folder){
-    //This will loop over all folders inside pathToFolder main, secondary
-    //Return stream so gulp-folders can concatenate all of them
-    //so you still can use safely use gulp multitasking
-    console.log(folder);
-    return gulp.src(path1.join(pathToFolder, folder, '*.js'))
-        .pipe(concat(folder + '.js'))
-        .pipe(gulp.dest('dist'));
+
+gulp.task('s', folders('src/components', function (folder) {
+    return gulp.src(path1.join('src/components', folder, '*.sass'))
+        .pipe(rcs({
+            preventRandomName: true,
+            prefix: folder + "-" ,
+        }))
+        .pipe(plumber({
+            errorHandler: notify.onError("Error: <%= error.message %>")
+        }))
+        .pipe(sass({
+        }))
+
+        .pipe(gcmq())
+        .pipe(cssmin())
+        .pipe(flatten())
+        .pipe(gulp.dest(path.build.css));
 }));
-
-
-let _folders = [];
-gulp.task('folders-sass', folders(pathToFolder , function(folder){
-    _folders.push(folder);
-
-    lo();
-}));
-
-function lo (){
-  console.log(_folders);
-}
-
-gulp.task('ww' , function () {
-   console.log(_folders);
-});
 
 
 gulp.task('style', function(){
-    let _folders = [];
+    return gulp.src(pathToFolder + folder1)
+        .pipe(rcs({
+            preventRandomName: true,
+            prefix: folder1+"-ww",
+        }))
+        .pipe(plumber({
+            errorHandler: notify.onError("Error: <%= error.message %>")
+        }))
+        .pipe(sass({
+        }))
 
-    gulp.run('folders-sass');
-
-    gulp.task('folders-sass', folders(pathToFolder , function(folder){
-        gulp.src()
-            .pipe(function () {
-                _folders.push(folder);
-            });
-    }));
-
-    for (let i = 0; i < _folders.length; i ++) {
-        console.log(i);
-        gulp.run('style-in', _folders[i]);
-    }
-
-    gulp.task('style-in', function (folder1) {
-        return gulp.src(pathToFolder + folder1)
-            .pipe(rcs({
-                preventRandomName: true,
-                prefix: folder1+"-ww",
-            }))
-            .pipe(plumber({
-                errorHandler: notify.onError("Error: <%= error.message %>")
-            }))
-            .pipe(sass({
-            }))
-
-            .pipe(gcmq())
-            .pipe(cssmin())
-            .pipe(flatten())
-            .pipe(gulp.dest(path.build.css));
-    });
+        .pipe(gcmq())
+        .pipe(cssmin())
+        .pipe(flatten())
+        .pipe(gulp.dest(path.build.css));
     // browserSync.reload();
 });
 
