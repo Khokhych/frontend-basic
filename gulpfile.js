@@ -36,17 +36,16 @@ gulp.task('s', folders('src/components', function (folder) {
 
 
 gulp.task('style', function(){
-    return gulp.src(pathToFolder + folder1)
-        .pipe(rcs({
-            preventRandomName: true,
-            prefix: folder1+"-ww",
-        }))
+    return gulp.src(path.src.style)
+        // .pipe(rcs({
+        //     preventRandomName: true,
+        //     prefix: folder1+"-ww",
+        // }))
         .pipe(plumber({
             errorHandler: notify.onError("Error: <%= error.message %>")
         }))
         .pipe(sass({
         }))
-
         .pipe(gcmq())
         .pipe(cssmin())
         .pipe(flatten())
@@ -152,7 +151,7 @@ gulp.task('build', [
 ]);
 
 gulp.task('default', ['watch',
-    'browser-sync'
+    // 'browser-sync'
     ]
 );
 
