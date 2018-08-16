@@ -17,7 +17,10 @@
     "gulp-uglify": "^3.0.1"
   },
   "dependencies": {
+    "gulp-concat": "^2.6.1",
     "gulp-flatten": "^0.4.0",
+    "gulp-folders": "^1.1.0",
+    "gulp-path": "^4.0.0",
     "gulp-rcs": "^1.1.0"
   }
 }
